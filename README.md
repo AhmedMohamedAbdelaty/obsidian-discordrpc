@@ -19,6 +19,15 @@ You can also reconnect to discord rich presence via the `Reconnect to Discord` c
 - Updates your Discord Status with Obsidian info, **Vault Name** and/or **Current File Name**.
 - Allows you to customise what info is shown.
 
+#### New Feature: Note Sharing Link
+
+![Note Sharing Link Screenshot](https://github.com/AhmedMohamedAbdelaty/obsidian-discordrpc/assets/73834838/e1136c07-89c5-459c-93c3-31f702fc17e7)
+
+- Adds a button with the text "Note Link" to the Discord Rich Presence if the current file contains a `share_link` tag and the `public_note` tag is set to "true".
+![Screenshot](https://github.com/AhmedMohamedAbdelaty/obsidian-discordrpc/assets/73834838/46512190-fc4d-464a-8cd3-ba0b3906feb8)
+- This feature is useful for sharing notes publicly using the [Share Note](https://obsidian.md/plugins?id=share-note) plugin. If a note is shared, the link will be displayed in the Discord status, making it easier for others to access the shared note directly.
+    - The `public_note` tag is used to determine whether the note is shared or not (you should set it to "true" **manually** if you want to share the note).
+
 ### Settings
 
 #### Vault Name Settings
