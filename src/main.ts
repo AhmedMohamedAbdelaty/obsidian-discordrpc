@@ -183,6 +183,19 @@ export default class ObsidianDiscordRPC extends Plugin {
       }
       this.lastSetTime = date;
 
+      let buttons = [];
+      // Get the current file and its metadata
+      const currentFile = this.app.workspace.getActiveFile();
+      const metadata = this.app.metadataCache.getFileCache(currentFile)?.frontmatter || {};
+      
+      // Check for share_link and public_note tags in metadata
+      if (metadata.share_link && metadata.public_note === "true") {
+        buttons.push({
+          label: "Note Link",
+          url: metadata.share_link
+        });
+      }
+
       if (this.settings.privacyMode) {
         await this.rpc.setActivity({
           details: `Editing Notes`,
@@ -190,6 +203,7 @@ export default class ObsidianDiscordRPC extends Plugin {
           startTimestamp: date,
           largeImageKey: "logo",
           largeImageText: "Obsidian",
+          buttons: buttons.length ? buttons : undefined,
         });
       } else if (
         this.settings.showVaultName &&
@@ -201,6 +215,7 @@ export default class ObsidianDiscordRPC extends Plugin {
           startTimestamp: date,
           largeImageKey: "logo",
           largeImageText: "Obsidian",
+          buttons: buttons.length ? buttons : undefined,
         });
       } else if (this.settings.showVaultName) {
         await this.rpc.setActivity({
@@ -208,6 +223,7 @@ export default class ObsidianDiscordRPC extends Plugin {
           startTimestamp: date,
           largeImageKey: "logo",
           largeImageText: "Obsidian",
+          buttons: buttons.length ? buttons : undefined,
         });
       } else if (this.settings.showCurrentFileName) {
         await this.rpc.setActivity({
@@ -215,12 +231,14 @@ export default class ObsidianDiscordRPC extends Plugin {
           startTimestamp: date,
           largeImageKey: "logo",
           largeImageText: "Obsidian",
+          buttons: buttons.length ? buttons : undefined,
         });
       } else {
         await this.rpc.setActivity({
           startTimestamp: date,
           largeImageKey: "logo",
           largeImageText: "Obsidian",
+          buttons: buttons.length ? buttons : undefined,
         });
       }
     }
